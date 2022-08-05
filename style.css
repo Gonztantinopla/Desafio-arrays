@@ -1,0 +1,54 @@
+@media only screen and (min-width: 286px) {
+  body {
+    background-image: url(/img/fondo-vertical.svg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    margin-bottom: 10vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+}
+
+@media only screen and (min-width: 968px) {
+  body {
+    background-image: url(/img/fondo-horizontal.svg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    margin-bottom: 10vh;
+  }
+}
+
+.logo {
+  max-width: 50vw;
+  max-height: 100px;
+  min-height: 40px;
+  min-width: 100px;
+}
+
+li {
+  font-size: 1.5sem;
+}
+
+.calculador {
+  margin-top: 20px;
+  font-size: 1.5rem;
+}
+
+.recuadro {
+  background-color: white;
+  border-radius: 9px;
+  padding: 3px;
+}
+
+.recuadro .boton {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  background-color: #FF9C00;
+}
+/*# sourceMappingURL=style.css.map */
