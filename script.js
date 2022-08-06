@@ -4,21 +4,22 @@ const cotizaciones = []
 
 
 class Cotizacion{
-    constructor(item, valor, cuotas){
+    constructor(item, valorContado, cuotas, valorCuota, precioFinal){
     this.item = item
-    this.valor = valor
+    this.valorContado = valorContado
     this.cuotas = cuotas
+    this.valorCuota = valorCuota
+    this.precioFinal = precioFinal
 }
 }
 
 function calcular(){
     let confirmar
     do{
-            // debugger
         let item = prompt("Ingrese que es lo que desea comprar\n por ejemplo, un iPad")
 
-        let valor = parseFloat(prompt("ingresa el valor en 1 pago de su producto."))
-        if (isNaN(valor)){
+        let valorContado = parseFloat(prompt("ingresa el valor en 1 pago de su producto."))
+        if (isNaN(valorContado)){
             alert("Debe elegir un valor numerico")
         }
         else{
@@ -27,10 +28,12 @@ function calcular(){
             alert("Debe elegir una cantidad de cuotas entre 1 y 6")
         }
         else{
-        console.log("Debera abonar", cuotas,"cuotas de", "$", calculoCuotas(valor, cuotas))
-        alert("Debera abonar\n" + cuotas +" cuotas de" + " $" + parseFloat(calculoCuotas(valor, cuotas)))
+        precioFinal = parseInt(calculoFinal(valorContado, cuotas))
+        valorCuota = parseInt(calculoCuotas(valorContado,cuotas))
+        console.log("Debera abonar", cuotas,"cuotas de", "$", Math.trunc(parseFloat(calculoCuotas(valorContado, cuotas))))
+        alert("Debera abonar\n" + cuotas +" cuotas de" + " $" + Math.trunc(parseFloat(calculoCuotas(valorContado, cuotas))))
         }
-        cotizaciones.push(new Cotizacion(item, valor, cuotas))
+        cotizaciones.push(new Cotizacion(item, valorContado, cuotas, valorCuota, Math.trunc(precioFinal)))
         }
         confirmar = confirm("realizar otra operacion?")
         }  
@@ -39,6 +42,24 @@ function calcular(){
     
 }
 
+function calculoFinal(num1,cuotas){
+    switch(cuotas){
+        case 1:
+            return num1
+        case 2:
+            return (num1 * 1.12)
+        case 3:
+            return (num1 * 1.18)
+        case 4:
+            return (num1 * 1.24)
+        case 5:
+            return (num1 * 1.31)
+        case 6:
+            return (num1 * 1.39)
+        default:
+            return "elegir entre 1 y 6 pagos"
+    }
+}
 
 function calculoCuotas(num1,cuotas){
     switch(cuotas){
@@ -64,8 +85,21 @@ function consultarCotizaciones(){
 }
 
 function borrarUltimo(){
-    console.log("se elimino",cotizaciones[cotizaciones.length - 1])
+    alert("se eliminó: " + cotizaciones[cotizaciones.length - 1].item);
+    console.log("se eliminó:" , cotizaciones[cotizaciones.length - 1]);
     cotizaciones.pop()
     
 }
+
+
+function sumarPreciosFinales(){
+let total = cotizaciones.reduce((acumulador, cotizacion) => acumulador + cotizacion.precioFinal , 0)
+    console.log ("Total a pagar: $", total)
+}
+
+function sumarValoresCuotas(){
+        let total = cotizaciones.reduce((acumulador, cotizacion) => acumulador + cotizacion.valorCuota , 0)
+            console.log ("Monto a pagar mensualmente: $", total)
+}
+
 
